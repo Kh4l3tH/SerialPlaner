@@ -7,3 +7,6 @@
 [submodule "Interpreter"]
 	path = Interpreter
 	url = https://github.com/Kh4l3tH/Interpreter.git
+[submodule "ParallelPort"]
+	path = ParallelPort
+	url = https://github.com/Kh4l3tH/ParallelPort.git
