@@ -1,6 +1,6 @@
 from gui import configure_gui
-from util import ParallelPort
-from util import Schrittmotor
+from ParallelPort import ParallelPort
+from Schrittmotor import Schrittmotor
 from subprocess import call
 from PySide import QtCore
 from PySide import QtGui
@@ -172,8 +172,8 @@ class Configure(QtGui.QWidget, configure_gui.MainWindow):
         self.label_position_z_default.setText(pos_z)
         self.edit_config_x.setText(pos_x)
         self.edit_config_z.setText(pos_z)
-        print 'Pin 10: 'self.pport.getPin(10)
-        print 'Pin 12: 'self.pport.getPin(12)
+        print 'Pin 10: '.format(self.pport.getPin(10))
+        print 'Pin 12: '.format(self.pport.getPin(12))
 
 
 def main():
