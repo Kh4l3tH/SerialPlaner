@@ -1,8 +1,8 @@
-from util import ParallelPort
-from util import Schrittmotor
-from lib import commands
-from lib import nanotec
-from lib import serial
+from ParallelPort import ParallelPort
+from Schrittmotor import Schrittmotor
+from Nanotec import commands
+from Nanotec import nanotec
+import serial
 
 # Falls alles funzt:
 
@@ -25,16 +25,16 @@ cmd = commands.Commands(nanotec.Nanotec(com))
 P = ParallelPort.ParallelPort('/dev/parport1')
 
 #############################
-# X:
-id = 1
-pin = 10
-# Z:
-# id = 3
-# pin = 12
+#X:
+#id = 1
+#pin = 10
+#Z:
+id = 3
+pin = 12
 #############################
 
 
-Axis = Schrittmotor.Schrittmotor(cmd, id, 200, 8, 5, 'SINUS', 1, reference_pin = pin)
+Axis = Schrittmotor.Schrittmotor(cmd, id, 200, 8, 5, 'SINUS', 4, reference_pin = pin)
 
 def ref(Axis):
     if P.getPin(Axis.reference_pin) == True:
@@ -46,13 +46,30 @@ def ref(Axis):
         Axis.wait()
     else:
         print 'Achse bereits auf Refenzschalter!'
+        Axis.move_rel(-10)
+        Axis.wait()
+        Axis.move_rel(1000, 100)
+        while P.getPin(Axis.reference_pin) == True:
+            pass
+        Axis.stop()
+        Axis.wait()
 
     print 'Bewege Achse vor den Referenzschalter...'
+    # Kompensation um Geschwindigkeit zu erhoehen
+    Axis.move_rel(-0.15)
+    Axis.wait()
+    #print ''
+    if P.getPin(Axis.reference_pin) == True:
+        raise ValueError('Kompensation zu hoch!')
     while P.getPin(Axis.reference_pin) == False:
         Axis.move_rel(-0.003125, 100)
         Axis.wait()
         print 'Pos: {0:.6f}, Pin {2}: {1}'.format(Axis.get_position(), P.getPin(Axis.reference_pin), Axis.reference_pin)
     return Axis.get_position()
+
+ref(Axis)
+
+exit()
 
 list_null = []
 for x in range(10):
