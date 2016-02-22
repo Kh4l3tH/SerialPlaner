@@ -81,11 +81,11 @@ class Configure(QtGui.QWidget, configure_gui.MainWindow):
 
     def reference_x(self):
         print self.pport.getPin(10) #False -> Home
-        #self.X.reset_position()
+        self.X.reset_position()
 
     def reference_z(self):
         print self.pport.getPin(12) #False -> Home
-        #self.Z.reset_position()
+        self.Z.reset_position()
 
     def toggle_backen(self):
         if self.pport.getPin(9) == True:
