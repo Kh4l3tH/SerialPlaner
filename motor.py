@@ -1,5 +1,6 @@
-from lib import serial
 import ConfigParser
+import serial
+
 
 config = ConfigParser.ConfigParser()
 config.read('cfg/FPDM.ini')
@@ -13,18 +14,18 @@ except:
 
 def get_motor():
     com.write('#*Zm\r')
-    reply = com.readline(eol='\r')
+    reply = com.readline()
     return reply.split('+')[-1].strip()
 
 def set_motor(address):
     current_motor = get_motor()
     com.write('#{0}m{1}\r'.format(current_motor, address))
-    reply = com.readline(eol='\r')
+    reply = com.readline()
     return get_motor()
 
 def get_state(motor):
     com.write('#{0}$\r'.format(motor))
-    state = com.readline(eol='\r')
+    state = com.readline()
     if state:
         return '\033[92m{0}\033[0m'.format(state.split('$')[1].strip())
     return '\033[91mNicht erreichbar\033[0m'
