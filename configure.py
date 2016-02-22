@@ -2,13 +2,13 @@ from ParallelPort import ParallelPort
 from Schrittmotor import Schrittmotor
 from Nanotec import commands
 from Nanotec import nanotec
-from Nanotec import serial
 from gui import configure_gui
 from subprocess import call
 from PySide import QtCore
 from PySide import QtGui
 from time import sleep
 import ConfigParser
+import serial
 import sys
 
 
