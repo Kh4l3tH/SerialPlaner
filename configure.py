@@ -1,5 +1,6 @@
-from ParallelPort import ParallelPort
+from Schrittmotor import Koordinatensystem
 from Schrittmotor import Schrittmotor
+from ParallelPort import ParallelPort
 from Nanotec import commands
 from Nanotec import nanotec
 from gui import configure_gui
@@ -136,7 +137,7 @@ class Configure(QtGui.QWidget, configure_gui.MainWindow):
         self.config_kss.read(self.path_kss)
         self.ks = {}
         for ks in self.config_kss.sections():
-            self.ks[ks] = Schrittmotor.Koordinatensystem(self.config_kss, ks)
+            self.ks[ks] = Koordinatensystem.Koordinatensystem(self.config_kss, ks)
             if update_list_kss == True:
                 self.list_kss.addItem(ks)
         if update_list_kss == True:
