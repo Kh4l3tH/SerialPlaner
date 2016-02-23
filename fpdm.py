@@ -1,7 +1,8 @@
-from traceback import format_exc
-from ParallelPort import ParallelPort
+from Schrittmotor import Koordinatensystem
 from Schrittmotor import Schrittmotor
+from ParallelPort import ParallelPort
 from Interpreter import Interpreter
+from traceback import format_exc
 from Nanotec import commands
 from Nanotec import nanotec
 import ConfigParser
