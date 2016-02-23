@@ -40,17 +40,17 @@ print 'Motor X: {0}'.format(get_state(X))
 print 'Motor C: {0}'.format(get_state(C))
 print 'Motor Z: {0}'.format(get_state(Z))
 
-raw_input('\nSteuerkarte der X-Achse anschliessen')
-print 'Alte Motoradresse: {0}'.format(get_motor())
-print 'Neue Motoradresse: {0}'.format(set_motor(X))
+if not raw_input('\nSteuerkarte der X-Achse anschliessen'):
+    print 'Alte Motoradresse: {0}'.format(get_motor())
+    print 'Neue Motoradresse: {0}'.format(set_motor(X))
 
-raw_input('\nSteuerkarte der C-Achse anschliessen')
-print 'Alte Motoradresse: {0}'.format(get_motor())
-print 'Neue Motoradresse: {0}'.format(set_motor(C))
+if not raw_input('\nSteuerkarte der C-Achse anschliessen'):
+    print 'Alte Motoradresse: {0}'.format(get_motor())
+    print 'Neue Motoradresse: {0}'.format(set_motor(C))
 
-raw_input('\nSteuerkarte der Z-Achse anschliessen')
-print 'Alte Motoradresse: {0}'.format(get_motor())
-print 'Neue Motoradresse: {0}'.format(set_motor(Z))
+if not raw_input('\nSteuerkarte der Z-Achse anschliessen'):
+    print 'Alte Motoradresse: {0}'.format(get_motor())
+    print 'Neue Motoradresse: {0}'.format(set_motor(Z))
 
 
 raw_input('\nAlle Steuerkarten anschliessen')
