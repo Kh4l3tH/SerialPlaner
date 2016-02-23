@@ -23,7 +23,7 @@ class fpdm():
         config_kss.read(path_kss)
         kss = {}
         for ks in config_kss.sections():
-            kss[ks] = Schrittmotor.Koordinatensystem(config_kss, ks)
+            kss[ks] = Koordinatensystem.Koordinatensystem(config_kss, ks)
 
         print 'Verbinde Parallel Port: {0}'.format(config.get('Settings', 'ParallelPort'))
         self.P = ParallelPort.ParallelPort(config.get('Settings', 'ParallelPort'))
