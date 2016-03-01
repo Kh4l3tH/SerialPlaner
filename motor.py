@@ -38,6 +38,9 @@ def get_position(motor):
     matches = re.search('.*([+-][0-9]*)', reply)
     return matches.groups()[0]
 
+def reset_position(motor):
+    com.write('#{0}Z0\r'.format(motor))
+
 X = config.getint('Motor_X', 'ID')
 C = config.getint('Motor_C', 'ID')
 Z = config.getint('Motor_Z', 'ID')
@@ -60,6 +63,13 @@ if not raw_input('\nSteuerkarte der Z-Achse anschliessen'):
 
 
 raw_input('\nAlle Steuerkarten anschliessen')
+
+if not raw_input('\nPositionen resetten?'):
+    print 'Resette Positionen...'
+    reset_position(X)
+    reset_position(C)
+    reset_position(Z)
+
 print '\nPruefe Status der Steuerkarten:'
 print 'Motor X: {0}, Position: {1:6}'.format(get_state(X), get_position(X))
 print 'Motor C: {0}, Position: {1:6}'.format(get_state(C), get_position(C))
