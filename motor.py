@@ -1,5 +1,6 @@
 import ConfigParser
 import serial
+import re
 
 
 config = ConfigParser.ConfigParser()
@@ -11,6 +12,7 @@ try:
 except:
     print 'Could not connect to serial port {0}'.format(config.get('Settings', 'SerialPort'))
     exit()
+com.flushInput()
 
 def get_motor():
     com.write('#*Zm\r')
@@ -30,15 +32,19 @@ def get_state(motor):
         return '\033[92m{0}\033[0m'.format(state.split('$')[1].strip())
     return '\033[91mNicht erreichbar\033[0m'
 
-
+def get_position(motor):
+    com.write('#{0}ZC\r'.format(motor))
+    reply = com.readline()
+    matches = re.search('.*([+-][0-9]*)', reply)
+    return matches.groups()[0]
 
 X = config.getint('Motor_X', 'ID')
 C = config.getint('Motor_C', 'ID')
 Z = config.getint('Motor_Z', 'ID')
 
-print 'Motor X: {0}'.format(get_state(X))
-print 'Motor C: {0}'.format(get_state(C))
-print 'Motor Z: {0}'.format(get_state(Z))
+print 'Motor X: {0}, Position: {1:6}'.format(get_state(X), get_position(X))
+print 'Motor C: {0}, Position: {1:6}'.format(get_state(C), get_position(C))
+print 'Motor Z: {0}, Position: {1:6}'.format(get_state(Z), get_position(Z))
 
 if not raw_input('\nSteuerkarte der X-Achse anschliessen'):
     print 'Alte Motoradresse: {0}'.format(get_motor())
@@ -55,6 +61,6 @@ if not raw_input('\nSteuerkarte der Z-Achse anschliessen'):
 
 raw_input('\nAlle Steuerkarten anschliessen')
 print '\nPruefe Status der Steuerkarten:'
-print 'Motor X: {0}'.format(get_state(X))
-print 'Motor C: {0}'.format(get_state(C))
-print 'Motor Z: {0}'.format(get_state(Z))
+print 'Motor X: {0}, Position: {1:6}'.format(get_state(X), get_position(X))
+print 'Motor C: {0}, Position: {1:6}'.format(get_state(C), get_position(C))
+print 'Motor Z: {0}, Position: {1:6}'.format(get_state(Z), get_position(Z))
