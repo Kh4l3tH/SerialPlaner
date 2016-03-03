@@ -16,7 +16,7 @@ if not raw_input('\nX-Achse resetten?') == 'n':
 print '\nX Pos: {}'.format(q.X.get_position())
 print 'Z Pos: {}'.format(q.Z.get_position())
 
-while raw_input('Einzelfahrt?') == 'n':
+while not raw_input('Einzelfahrt?') == 'n':
     q.execute('/home/werker/test.ngc')
 
 while True:
