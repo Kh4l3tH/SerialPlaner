@@ -26,11 +26,11 @@ P = ParallelPort.ParallelPort('/dev/parport1')
 
 #############################
 #X:
-#id = 1
-#pin = 10
+id = 1
+pin = 10
 #Z:
-id = 3
-pin = 12
+#id = 3
+#pin = 12
 #############################
 
 
@@ -67,7 +67,7 @@ def ref(Axis):
         print 'Pos: {0:.6f}, Pin {2}: {1}'.format(Axis.get_position(), P.getPin(Axis.reference_pin), Axis.reference_pin)
     return Axis.get_position()
 
-ref(Axis)
+print 'Final Pos: {0}'.format(ref(Axis))
 
 exit()
 
