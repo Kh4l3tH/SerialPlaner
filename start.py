@@ -17,12 +17,12 @@ print '\nX Pos: {}'.format(q.X.get_position())
 print 'Z Pos: {}'.format(q.Z.get_position())
 
 while not raw_input('Einzelfahrt?') == 'n':
-    q.execute('/home/werker/test.ngc')
+    q.execute('/home/werker/Desktop/GCode.ngc')
 
 while True:
     print 'Pin 15: {0}'.format(q.P.getPin(15))
     try:
         if q.P.getPin(15) == False:
-            q.execute('/home/werker/test.ngc')
+            q.execute('/home/werker/Desktop/GCode.ngc')
     except:
         break
