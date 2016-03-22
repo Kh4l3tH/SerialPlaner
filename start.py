@@ -9,7 +9,7 @@ if not raw_input('\nX-Achse resetten?') == 'n':
     print 'Resetting X...'
     q.X.reset_position()
 
-if not raw_input('\nX-Achse resetten?') == 'n':
+if not raw_input('\nZ-Achse resetten?') == 'n':
     print 'Resetting Z...'
     q.Z.reset_position()
 
